@@ -81,78 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ==========================================================================
-  // TESTIMONIALS SLIDER
-  // ==========================================================================
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const dotsContainer = document.querySelector('.slider-dots');
-  const prevBtn = document.querySelector('.slider-btn.prev');
-  const nextBtn = document.querySelector('.slider-btn.next');
-  let currentSlide = 0;
-  let slideInterval;
 
-  if (slides.length > 0) {
-    // Criar dots dinamicamente
-    slides.forEach((_, idx) => {
-      const dot = document.createElement('span');
-      dot.classList.add('slider-dot');
-      if (idx === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goToSlide(idx));
-      dotsContainer.appendChild(dot);
-    });
-
-    const dots = document.querySelectorAll('.slider-dot');
-
-    const updateSlider = () => {
-      slides.forEach((slide, idx) => {
-        slide.classList.remove('active');
-        dots[idx].classList.remove('active');
-      });
-
-      slides[currentSlide].classList.add('active');
-      dots[currentSlide].classList.add('active');
-    };
-
-    const nextSlide = () => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      updateSlider();
-    };
-
-    const prevSlide = () => {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      updateSlider();
-    };
-
-    const goToSlide = (index) => {
-      currentSlide = index;
-      updateSlider();
-      resetInterval();
-    };
-
-    if (nextBtn && prevBtn) {
-      nextBtn.addEventListener('click', () => {
-        nextSlide();
-        resetInterval();
-      });
-
-      prevBtn.addEventListener('click', () => {
-        prevSlide();
-        resetInterval();
-      });
-    }
-
-    const startInterval = () => {
-      slideInterval = setInterval(nextSlide, 6000);
-    };
-
-    const resetInterval = () => {
-      clearInterval(slideInterval);
-      startInterval();
-    };
-
-    // Inicializar o slider auto-play
-    startInterval();
-  }
 
   // ==========================================================================
   // CONTACT FORM SIMULATION & WHATSAPP REDIRECT
