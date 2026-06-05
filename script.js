@@ -260,4 +260,35 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.addEventListener('scroll', scrollSpy);
+
+  // ==========================================================================
+  // THEME TOGGLE (DARK MODE)
+  // ==========================================================================
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeToggleIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+
+  if (themeToggleBtn && themeToggleIcon) {
+    // Sincroniza o ícone (sol ou lua) com a classe atual da tag html
+    const syncIcon = () => {
+      if (document.documentElement.classList.contains('dark-mode')) {
+        themeToggleIcon.className = 'fas fa-sun';
+      } else {
+        themeToggleIcon.className = 'fas fa-moon';
+      }
+    };
+
+    // Sincronização inicial com o estado do script no cabeçalho
+    syncIcon();
+
+    themeToggleBtn.addEventListener('click', () => {
+      // Toggle dark-mode class on documentElement (HTML) to prevent flash
+      const isDark = document.documentElement.classList.toggle('dark-mode');
+      
+      // Salva a preferência no localStorage
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      
+      // Sincroniza o ícone
+      syncIcon();
+    });
+  }
 });

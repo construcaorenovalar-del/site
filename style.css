@@ -12,6 +12,7 @@
   --yellow-logo: #FFF8D6;         /* Amarelo Pastel */
   --lavender-logo: #E8EBFC;       /* Lilás/Lavanda Pastel */
   --pink-logo: #FBE5E7;           /* Rosa Pastel */
+  --mint-logo: #E2ECE9;           /* Verde Menta Pastel */
   
   /* Neutral scale */
   --dark-charcoal: #1E2022;       /* Cor principal de texto/títulos */
@@ -34,6 +35,12 @@
   --font-title: 'Outfit', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   
+  /* Footer styles (fixed dark theme) */
+  --footer-bg: #111315;
+  --footer-text: #A0A5A9;
+  --footer-title: #FFFFFF;
+  --footer-border: rgba(255, 255, 255, 0.05);
+
   /* Miscellaneous */
   --border-radius-sm: 8px;
   --border-radius-md: 16px;
@@ -41,6 +48,28 @@
   --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: all 0.2s ease;
   --max-width: 1280px;
+}
+
+/* ==========================================================================
+   DARK MODE COLORS
+   ========================================================================== */
+.dark-mode {
+  --bg-light: #070913;            /* Fundo escuro premium com leve tom azulado */
+  --bg-white: #111422;            /* Fundo de cards e containers */
+  --dark-charcoal: #F1F3F9;       /* Texto principal/títulos */
+  --text-body: #A5ADC0;           /* Texto secundário */
+  --border-color: #202438;        /* Bordas mais discretas */
+  
+  --glass-bg: rgba(17, 20, 34, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  
+  --primary-light: rgba(43, 102, 255, 0.12);
+  
+  /* Tons pastéis escurecidos e dessaturados para harmonia visual */
+  --yellow-logo: #222018;
+  --lavender-logo: #181B2B;
+  --pink-logo: #261B20;
+  --mint-logo: #16221E;
 }
 
 /* ==========================================================================
@@ -784,7 +813,7 @@ ul {
 }
 
 .diff-card-4 {
-  background-color: #E2ECE9; /* Um verde menta suave adicional */
+  background-color: var(--mint-logo);
   margin-top: 2rem;
 }
 
@@ -1303,10 +1332,10 @@ textarea.form-control {
    FOOTER
    ========================================================================== */
 .footer {
-  background-color: var(--dark-charcoal);
-  color: #A0A5A9;
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
   padding: 5rem 0 2rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--footer-border);
 }
 
 .footer-top {
@@ -1323,7 +1352,7 @@ textarea.form-control {
 }
 
 .footer-logo .logo-text {
-  color: var(--bg-white);
+  color: var(--footer-title);
 }
 
 .footer-logo .logo-img {
@@ -1337,7 +1366,7 @@ textarea.form-control {
 
 .footer-links-col h4, .footer-contact-col h4 {
   font-family: var(--font-title);
-  color: var(--bg-white);
+  color: var(--footer-title);
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 1.75rem;
@@ -1374,7 +1403,7 @@ textarea.form-control {
 }
 
 .footer-link:hover {
-  color: var(--bg-white);
+  color: var(--footer-title);
   transform: translateX(3px);
 }
 
@@ -1406,7 +1435,7 @@ textarea.form-control {
 }
 
 .footer-bottom p span {
-  color: var(--bg-white);
+  color: var(--footer-title);
 }
 
 .footer-socials {
@@ -1562,7 +1591,14 @@ textarea.form-control {
   }
   
   .nav-actions {
-    display: none; /* Simplificado no mobile */
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 1.25rem;
+  }
+  
+  .btn-nav {
+    display: none;
   }
   
   .diff-grid {
@@ -1650,4 +1686,79 @@ textarea.form-control {
   .contact-form-card {
     padding: 2rem 1.5rem;
   }
+}
+
+/* ==========================================================================
+   THEME TOGGLE BUTTON & SMOOTH TRANSITION
+   ========================================================================== */
+body, html {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--dark-charcoal);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.theme-toggle-btn i {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.theme-toggle-btn:active i {
+  transform: scale(0.8);
+}
+
+/* Custom transitions for cards and layout elements */
+.service-card, .diff-card, .portfolio-item, .testimonial-card, .contact-form-card, .form-control, .header {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ==========================================================================
+   DARK MODE ADJUSTMENTS
+   ========================================================================== */
+.dark-mode .diff-icon {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark-mode .form-feedback.success {
+  background-color: #112620;
+  color: #3CD070;
+  border-color: #193C32;
+}
+
+.dark-mode .form-feedback.error {
+  background-color: #2D1A1C;
+  color: #FF6B7A;
+  border-color: #4C2226;
+}
+
+.dark-mode img:not(.logo-img) {
+  filter: brightness(0.85) contrast(1.05);
+}
+
+.dark-mode .logo-img {
+  filter: brightness(1.1) contrast(1);
+}
+
+/* Fix Hero Floating Card Borders in Dark Mode */
+.dark-mode .hero-card {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
 }

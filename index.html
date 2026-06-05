@@ -21,6 +21,16 @@
   
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Script de inicialização rápida do Tema Escuro -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -44,6 +54,9 @@
       </nav>
       
       <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar Tema">
+          <i class="fas fa-moon"></i>
+        </button>
         <a href="https://wa.me/5554996930114?text=Olá,%20conheci%20seu%20site%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn btn-whatsapp btn-nav" id="header-whatsapp-cta">
           <i class="fab fa-whatsapp"></i> Orçamento Grátis
         </a>
